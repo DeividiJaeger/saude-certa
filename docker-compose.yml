@@ -1,0 +1,63 @@
+version: '3.8'
+
+services:
+  # Serviço do PostgreSQL
+  postgres_db:
+    image: postgres:14
+    container_name: postgres_db
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: saudecerta
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - app-network
+
+  # Serviço do Backend
+  backend_app:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: backend_app
+    restart: always
+    ports:
+      - "5001:5001"
+    environment:
+      - DATABASE_URL=postgresql://postgres:postgres@postgres_db:5432/saudecerta
+      - PORT=5001
+      - NODE_ENV=development
+    depends_on:
+      - postgres_db
+    networks:
+      - app-network
+
+  # Serviço do Frontend
+  frontend_app:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: frontend_app
+    restart: always
+    ports:
+      - "3001:3000"
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    environment:
+      - REACT_APP_API_URL=http://localhost:5001
+      - PORT=3000
+    depends_on:
+      - backend_app
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  postgres_data:
