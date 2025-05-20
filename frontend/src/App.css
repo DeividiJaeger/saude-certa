@@ -1,38 +1,121 @@
-.App {
-  text-align: center;
+/* Estilos básicos que podem ser mantidos, mas não são necessários com Tailwind */
+/* Estilos específicos da aplicação podem ser adicionados aqui se necessário */
+
+/* Estilos específicos para o mapa */
+.leaflet-container {
+  width: 100%;
+  height: 100%;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* Estilização para os popups do mapa */
+.leaflet-popup-content {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.leaflet-popup-content strong {
+  color: #2563eb;
+  font-weight: 600;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.leaflet-popup-content em {
+  font-style: italic;
+  color: #4b5563;
+  display: block;
+  margin-top: 4px;
 }
 
-.App-link {
-  color: #61dafb;
+/* Estilização personalizada para marcadores */
+.custom-div-icon {
+  background: transparent;
+  border: none;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.marker-pin {
+  width: 30px;
+  height: 30px;
+  border-radius: 50% 50% 50% 0;
+  background: #3b82f6;
+  position: absolute;
+  transform: rotate(-45deg);
+  left: 50%;
+  top: 50%;
+  margin: -15px 0 0 -15px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.marker-pin::after {
+  content: '';
+  width: 20px;
+  height: 20px;
+  margin: 5px 0 0 5px;
+  background: #fff;
+  position: absolute;
+  border-radius: 50%;
+}
+
+/* Estilização para tooltips */
+.custom-tooltip-class {
+  background-color: rgba(255, 255, 255, 0.95);
+  border: 1px solid #3b82f6;
+  border-radius: 6px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 0;
+}
+
+.custom-tooltip {
+  padding: 8px 12px;
+}
+
+.custom-tooltip strong {
+  display: block;
+  color: #2563eb;
+  font-size: 14px;
+  margin-bottom: 4px;
+}
+
+.custom-tooltip p {
+  color: #4b5563;
+  font-size: 12px;
+  margin: 0;
+}
+
+/* Estilização para popups */
+.custom-popup-class {
+  min-width: 250px;
+}
+
+.custom-popup-class .leaflet-popup-content-wrapper {
+  border-radius: 8px;
+  padding: 0;
+}
+
+.custom-popup-class .leaflet-popup-tip {
+  background: #fff;
+}
+
+.custom-popup {
+  padding: 12px;
+}
+
+.custom-popup h3 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #2563eb;
+  margin-bottom: 8px;
+  border-bottom: 1px solid #e5e7eb;
+  padding-bottom: 6px;
+}
+
+.custom-popup p {
+  margin: 4px 0;
+  font-size: 13px;
+  color: #4b5563;
+}
+
+/* Melhoria para a interação ao passar o mouse nos cards de local */
+.locations-list-item:hover {
+  background-color: #eff6ff;
+  transition: background-color 0.2s;
 }

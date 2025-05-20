@@ -7,7 +7,7 @@ const Footer = () => {
       <div className="footer-container">
         <div className="footer-content">
           <div className="footer-section">
-            <h3>Saúde Certa Maps</h3>
+            <h3 style={{ color: "white" }}>Saúde Certa Maps</h3>
             <p>Encontre o serviço de saúde mais próximo de você.</p>
           </div>
           
