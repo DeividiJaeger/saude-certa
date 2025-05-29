@@ -11,7 +11,7 @@ export default defineConfig({
       usePolling: true, // Fundamental para o hot reload funcionar em Docker
     },
     hmr: {
-      clientPort: 3001, // Porta exposta no docker-compose
+      clientPort: 3002, // Porta exposta no docker-compose
       host: 'localhost', // Ou o host em que sua aplicação está rodando
     }
   },
