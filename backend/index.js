@@ -5,6 +5,7 @@ require('dotenv').config();
 
 // Importando rotas e middlewares
 const userRoutes = require('./routes/userRoutes');
+const demandsRoutes = require('./routes/demandsRoutes');
 const { authenticateToken } = require('./middleware/auth');
 
 const prisma = new PrismaClient();
@@ -19,11 +20,21 @@ app.get('/', (req, res) => {
   res.json({ message: 'API Saúde Certa Maps está funcionando!' });
 });
 
+// Adicionar log para depuração
+app.use((req, res, next) => {
+  console.log(`${req.method} ${req.path}`);
+  next();
+});
+
 // Rota de login direta (alternativa)
 app.post('/api/login', require('./controllers/userController').login);
 
 // Configurando as rotas de usuário
 app.use('/api/users', userRoutes);
+
+// Configurando as rotas de demandas
+app.use('/api/demands', demandsRoutes);
+console.log('Rotas de demandas configuradas!');
 
 // Rota protegida de exemplo
 app.get('/api/admin/profile', authenticateToken, async (req, res) => {
